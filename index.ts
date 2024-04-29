@@ -44,8 +44,8 @@
     obj2 = obj1; // obj1 non ha lo stesso insieme di tipi di obj2 */
 
 
-    //, Intersection types
 
+    //, Intersection types
     /* type Person = { name: string; age: number; };
     type Employee = { job: string; salary: number; };
 
@@ -95,7 +95,6 @@
         age: 29
     }; */
 
-
     /* const obj = {
         prop: "Valore 1",
     };
@@ -105,7 +104,6 @@
 
     //obj.name?.toUpperCase();
 
-
     /* let obj: {
         [key: string]: boolean
     } = {
@@ -113,18 +111,87 @@
         prop2: false
     }; */
 
+
+
     //, Array
+    //let arr1 = [1, 2, 3];
+    //let arr2: number[] = [4, 5, 6];
+    //let arr3: string[] = ['a', 'b', 'c'];
+    //let arr4 = [1, 'a', true];
+    //let arr5: (string | number)[] = [1, 'a'];
+    //let arr6: (any | void )[] = [1, 'a', true, {}];
+
+    /* const arr7 = [];
+    arr7.push(1);
+    arr7.push('a');
+    console.log(arr7); */
+
+    //const arr8: Array<number> = [1, 2, 3];
+
+    //# readonly
+    //let a: readonly any[] = [1, 'Hello'];
+    //a.push(3)
+
+    //let b: ReadonlyArray<any> = [1, 'Hello'];
+    //b.sort();
 
 
 
-    //, void
+    //, Tuple
+    //let t1: [number, string] = [1, 'Hello'];
+
+    //let t2: [number, string, boolean] = [1, 'Hello', {}];
+    //let t3: [number, string, boolean, object, number] = [1];
+
+    //let t4: [ number & any, boolean | undefined, string? ] = [10, true];
+
+    //let t5: [number, string, ...boolean[]] = [1, 'Hello', true, false, true];
 
 
+    //# readonly
+    //let a: readonly [number, string] = [1, 'Hello'];
+    //a.pop(3)
 
-    //, never
+    //let b: Readonly<[number, string]> = [1, 'Hello'];
+    //b.push(true);
 
 
     //, null e undefined
+    /* let n: null = null;
+    let u: undefined = undefined;
+
+    let num: number | null | undefined = 10;
+    num = n;
+    num = u; */
+    //num * 2;
+
+    /* if (num !== null && num !== undefined) {
+        num * 2;
+    } else {
+        console.log('num è null o undefined');
+    } */
+
+    /* u = n;
+    n = u; */
 
 
+    //, void e never
 
+    /* function f1 () {
+        let a = 10;
+    }
+
+    function f2 (): never {
+        throw new Error('Errore');
+    }
+
+    function f3 (): never {
+        while (true) {
+            console.log('Ciao');
+        }
+    }
+
+    let f4 = f3(); */
+
+
+    //, Refinement
