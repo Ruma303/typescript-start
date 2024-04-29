@@ -52,3 +52,25 @@
     const infoById = getInfo(101); // Chiama la prima firma
     const infoByEmail = getInfo("user@example.com"); // Chiama la seconda firma
     const infoByNameAndAddress = getInfo("John Doe", "123 Main St"); // Chiama la terza firma
+
+
+    //, Funzioni come tipi
+    type Operazione = (x: number, y: number) => number;
+
+    type Log = {(x: string): string};
+
+    let somma: Operazione = function(x, y) {
+        return x + y;
+    };
+    let differenza: Operazione = function(x, y) {
+        return x - y;
+    };
+
+    console.log(somma(5, 3));      // 8
+    console.log(differenza(5, 3)); // 2
+
+
+    //% Generics
+    function identity<T>(arg: T): T {
+        return arg;
+    }
