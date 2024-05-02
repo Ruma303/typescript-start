@@ -71,6 +71,41 @@
 
 
     //% Generics
-    function identity<T>(arg: T): T {
-        return arg;
+
+    function getMiddleElement<T>(items: T[]): T | undefined {
+        if (items.length === 0) {
+            return undefined;
+        }
+        const middleIndex = Math.floor(items.length / 2);
+        return items[middleIndex];
     }
+
+    const numbers = [1, 2, 3, 4, 5];
+    const middleNumber = getMiddleElement(numbers);
+    // middleNumber sarà di tipo number
+
+    const strings = ["apple", "banana", "cherry"];
+    const middleString = getMiddleElement(strings);
+    // middleString sarà di tipo string
+
+
+    //, Più parametri generici
+
+    function pairElements<T, U>(first: T, second: U): [T, U] {
+        return [first, second];
+    }
+
+    const result1 = pairElements(5, "hello");
+    console.log(result1);  // [5, "hello"]
+
+    const result2 = pairElements(true, { name: "Alice" });
+    console.log(result2);  // [true, { name: "Alice" }]
+
+    const result3 = pairElements(["apple", "banana"], 42);
+    console.log(result3);  // [["apple", "banana"], 42]
+
+
+
+
+    //, Bounded Generics
+    
