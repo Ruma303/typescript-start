@@ -64,6 +64,27 @@ class Student extends Person {
 }
 const student = new Student();
 console.log(student.name()); // Studente */
+//, Invocazione dei Costruttori delle superclassi
+/* class Father {
+    protected className: string = "Father";
+    private oldValue: number;
+    constructor(oldValue: number) {
+        this.oldValue = oldValue;
+        console.log(`Costruttore della classe ${this.className} invocato. Valore: ${this.oldValue}`);
+    }
+}
+class Son extends Father {
+    protected className: string = "Son";
+    private newValue: number;
+    constructor(oldValue: number, newValue: number) {
+        super(oldValue);
+        this.newValue = newValue;
+        console.log(`Costruttore della classe ${this.className} invocato. Valore: ${this.newValue}`);
+    }
+}
+const son = new Son(50, 10); */
+// Costruttore della classe Father invocato. Valore: 50
+// Costruttore della classe Son invocato. Valore: 10
 //, Classi e metodi astratti
 /* abstract class Person {
     protected name: string;
@@ -102,8 +123,98 @@ class Teacher extends Person {
 }
 const mike = new Teacher("Mike", 45);
 mike.description(); // This is Mike, a 45 year old teacher. Subject: Math */
-//% Interfacce
 //, Metodi statici
+/* class Circle {
+    public static pi: number = 3.14159;
+    public static calculateArea(radius: number): number {
+        return Circle.pi * radius * radius;
+    }
+}
+console.log(Circle.pi); // 3.14159
+console.log(Circle.calculateArea(5)); // 78.53975 */
+//# this
+/* class Circle {
+    public static pi: number = 3.14159;
+    public calculateCircumference(radius: number): number {
+        return 2 * this.pi * radius;
+    }
+    static classLog(): void {
+        console.log(this);
+    }
+}
+console.log(Circle.classLog()); // Class Circle {} */
+//# Ereditarietà tra classi con metodi statici
+/* class Base {
+    static show(): void {
+        console.log('Metodo statico di Base');
+    }
+}
+class Derived extends Base {
+    static show(): void {
+        console.log('Metodo statico di Derived');
+    }
+}
+Base.show(); // 'Metodo statico di Base'
+Derived.show(); // 'Metodo statico di Derived' */
+//, Classi e metodi final
+/* class Final {
+    private constructor() {
+        throw new Error("Impossibile creare un'istanza di questa classe");
+    }
+    public static create() {
+        return new Final();
+    }
+} */
+/* class Derived extends Final {
+    constructor() {
+        super();
+    }
+} */
+// const final = new Final();
+/* const final = Final.create();
+console.log(final); */
+//, Costruttori privati
+//# Singleton
+/* class Singleton {
+    private static instance: Singleton;
+    private constructor() {
+        console.log("Istanza creata");
+    }
+    public static getInstance(): Singleton {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+        return Singleton.instance;
+    }
+}
+const instance1 = Singleton.getInstance();
+const instance2 = Singleton.getInstance();
+console.log(instance1 === instance2);  // true */
+//# Factory Pattern
+/* class Product {
+    private constructor(public name: string, public price: number) { }
+    public static createStandardProduct() {
+        return new Product("Standard Product", 20);
+    }
+    public static createPremiumProduct() {
+        return new Product("Premium Product", 50);
+    }
+}
+const standardProduct = Product.createStandardProduct();
+const premiumProduct = Product.createPremiumProduct(); */
+//# Costruttore privato della sottoclasse
+/* class Base {}
+class Derived extends Base {
+    private constructor() {
+        super();
+    }
+    static create() {
+        return new Derived();
+    }
+}
+const derived = Derived.create(); */
+//, Classi anonime
+//, Mixin
 //, Ereditarietà multipla
 /* interface A {
     a(): void;
@@ -121,25 +232,4 @@ class C implements A, B {
 }
 const c = new C();
 c.a(); // Metodo a
-c.b(); // Metodo b */
-//, Classi e metodi final
-/* class Final {
-    private constructor() { }
-
-    private finalMethod() {
-        console.log("Metodo della classe base");
-    }
-
-    static create() {
-        return new Final();
-    }
-}
-
-class Derived extends Final {
-    public finalMethod() {
-        console.log("Metodo della classe derivata");
-    }
-}
-const derived = Derived.create();
-derived.finalMethod(); // Metodo della classe base */
-//, Mixin
+c.b(); // Metodo b */ 
