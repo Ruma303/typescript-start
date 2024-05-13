@@ -195,3 +195,110 @@
 
 
     //, Refinement
+
+
+
+    //, Type Narrowing
+
+    type Item = { prop: string; };
+
+    function itemOrItems(name: Item | Item[]) { // oggetto o array
+        if (Array.isArray(name)) {
+            return name.length;
+        } else {
+            return name.prop;
+        }
+    }
+
+    let obj = { prop: "Prop1" };
+    let arr = [{ prop: "Prop1" }, { prop: "Prop2" }];
+
+    console.log(itemOrItems(obj)); // Prop1
+    console.log(itemOrItems(arr)); // 2
+
+
+    //, Object Narrowing
+
+    type Book = {
+        title: string;
+        pages: number;
+        author: string;
+        ISBN: string;
+    };
+
+    let book1: Book = {
+        title: "Il Signore degli Anelli",
+        pages: 1000,
+        author: "J.R.R. Tolkien",
+        ISBN: "978-88-04-12345-6"
+    };
+
+    console.log(book1);
+
+    type BookName = {
+        title: string;
+    };
+
+    let book2: BookName = book1;
+    console.log(book2);
+    console.log(book2.title);
+    //console.log(book2.pages);
+
+
+    //, Type Guard
+
+    //# typeof
+    let price = 10;
+
+    function getType(price: number | string) {
+        if (typeof price === 'number') {
+            return parseFloat(price.toFixed(2));
+        } else {
+            return price;
+        }
+    }
+
+    //# instanceof
+
+    let newDate = new Date();
+
+    function isDate(date: Date | string) {
+        if (date instanceof Date) {
+            return date.toISOString();
+        } else {
+            return date;
+        }
+    }
+
+    //# user-defined type guard
+
+
+    let someValue: string = "Hello World";
+
+    function isString(value: string) {
+        if (someValue === "string") {
+            return true;
+        }
+    }
+
+    console.log(isString(someValue));
+
+
+
+    //, Type Widening
+
+    type Course = {
+        name: string;
+        duration: number;
+    };
+
+    let course = {
+        name: "TypeScript",
+        duration: 10
+    } as Course;
+
+    function courseName(course: Course) {
+        return course.name;
+    }
+
+    console.log(courseName(course)); // TypeScript
